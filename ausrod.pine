@@ -1,0 +1,87 @@
+//@version=3
+study(title="atomantic ultimate stochastic RSI oscillator of destiny", precision=0)
+
+// taken from https://github.com/atomantic/pine_scripts
+// A combined indicator, overlapping the following three indicators
+//    - RSI (with option to add second timeframe)
+//    - Stochastic RSI
+//    - Ultimate Oscillator
+// Lightning Network Satoshi Tips Accepted https://tippin.me/@antic
+
+// Configurable Inputs
+src = input(close, title="Source")
+len = input(14, minval=1, title="Length")
+upLine = input(70, minval=50, maxval=90, title="Upper Line Value?")
+lowLine = input(30, minval=10, maxval=50, title="Lower Line Value?")
+sml = input(true, title="Show Mid Line?")
+sbh = input(true, title="Show Background Highlights When RSI is Above/Below High/Low Lines?")
+sch = input(true, title="Show Background Highlights When RSI Cross?")
+sl = input(true, title="Show 'B' and 'S' Letters When RSI Crosses High/Low Line?")
+useCurrentRes = input(true, title="Use Current Chart Resolution?")
+resCustom = input(title="Use Different Timeframe? Uncheck Box Above", type=resolution, defval="60")
+ssRSI = input(false, title="Show 2nd RSI?")
+resCustom2 = input(title="Use 2nd RSI? Check Box Above", type=resolution, defval="D")
+useCurrentRes2 = input(false, title="Use 2nd RSI Plot On Samet Timeframe?")
+len2 = input(14, minval=1, title="2nd RSI Length")
+
+res = useCurrentRes ? period : resCustom
+res2 = useCurrentRes2 ? period : resCustom2
+
+up = rma(max(change(src), 0), len)
+down = rma(-min(change(src), 0), len)
+rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - (100 / (1 + up / down))
+outRSI = security(tickerid, res, rsi)
+
+up2 = rma(max(change(src), 0), len2)
+down2 = rma(-min(change(src), 0), len2)
+rsi2 = down2 == 0 ? 100 : up2 == 0 ? 0 : 100 - (100 / (1 + up2 / down2))
+outRSI2 = security(tickerid, res2, rsi2)
+
+aboveLine = outRSI > upLine ? 1 : 0
+belowLine = outRSI < lowLine ? 1 : 0
+crossUp = outRSI[1] <  lowLine and outRSI > lowLine ? 1 : 0
+crossDn = outRSI[1] >  upLine and outRSI < upLine ? 1 : 0
+
+bgcolor(sbh and aboveLine ? color(red,70) : na, title="RSA Above Line")
+bgcolor(sbh and belowLine ? color(green,70) : na, title="RSA Below Line")
+bgcolor(sch and crossUp ? color(#33dd88,40) : na, title="RSA Cross Up")
+bgcolor(sch and crossDn ? color(red,40) : na, title="RSA Cross Down")
+
+plot(outRSI, title="RSI", style=line, linewidth=3, color=purple)
+plot(ssRSI and outRSI2 ? outRSI2 : na, title="2nd RSI - Different Time Frame?", style=linebr, linewidth=4, color=orange)
+p1 = plot(upLine, title= "Upper Line", style=solid, linewidth=3, color=red)
+p2 = plot(lowLine, title= "Lower Line", style=solid, linewidth=3, color=green)
+plot(sml and 50 ? 50 : na, title="Mid Line", style=linebr, linewidth=2, color=gray)
+plotchar(sl and crossUp ? crossUp : na, title="Buy Signal", char='B', location=location.bottom, color=white, transp=0, offset=0)
+plotchar(sl and crossDn ? crossDn : na, title="Sell Signal", char='S', location=location.top, color=red, transp=0, offset=0)
+fill(p1, p2, color=silver, transp=60)
+
+
+// Stochastic RSI
+smoothK = input(3, minval=1)
+smoothD = input(3, minval=1)
+lengthRSI = input(14, minval=1)
+lengthStoch = input(14, minval=1)
+stochastic_src = input(close, title="RSI Source")
+
+rsi1 = rsi(stochastic_src, lengthRSI)
+k = sma(stoch(rsi1, rsi1, rsi1, lengthStoch), smoothK)
+d = sma(k, smoothD)
+plot(k, color=blue)
+plot(d, color=red)
+h0 = hline(80)
+h1 = hline(20)
+fill(h0, h1, color=silver, transp=60)
+
+// Ultimate Oscillator
+length7 = input(7, minval=1), length14 = input(14, minval=1), length28 = input(28, minval=1)
+average(bp, tr_, length) => sum(bp, length) / sum(tr_, length)
+high_ = max(high, close[1])
+low_ = min(low, close[1])
+bp = close - low_
+tr_ = high_ - low_
+avg7 = average(bp, tr_, length7)
+avg14 = average(bp, tr_, length14)
+avg28 = average(bp, tr_, length28)
+out = 100 * (4*avg7 + 2*avg14 + avg28)/7
+plot(out, color=red, title="UO", linewidth = 4)
