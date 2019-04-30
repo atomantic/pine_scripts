@@ -6,6 +6,10 @@ alter=0x111111
 echo -n "//@version=3
 study(\"Dollar Cost Average Cost Basis\", overlay=true, scale=scale.none)
 // Shows the cost-basis for dollar cost averaging
+// note: this code was generated using Bash because pinescript does not have arrays/collections
+// and you can't run plot within a for loop :(
+// code here: https://github.com/atomantic/pine_scripts
+// Lightning Network Satoshi Tips Accepted https://tippin.me/@antic
 
 price=input(close, title=\"Source\")
 // plot the price for use in color fills
