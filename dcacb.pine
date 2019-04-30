@@ -1,5 +1,5 @@
 //@version=3
-study("Dollar Cost Average Cost Basis", overlay=true, scale=scale.none)
+study("Dollar Cost Average Cost Basis", overlay=true)
 // Shows the cost-basis for dollar cost averaging
 // note: this code was generated using Bash because pinescript does not have arrays/collections
 // and you can't run plot within a for loop :(
@@ -8,25 +8,31 @@ study("Dollar Cost Average Cost Basis", overlay=true, scale=scale.none)
 
 price=input(close, title="Source")
 // plot the price for use in color fills
-plot_price = plot(price[1], linewidth=0)
+plot_price = plot(price)
 color_fill_sell = #a20000
 color_fill_buy = #017d13
 color_fill_transp = input(85, title="Fill Transparency")
+rolling_window = input(defval=false, type=bool, title="Rolling Window?")
 
 time_delta = (timenow - time)
 milli_1day = 1000 * 60 * 60 * 24
+dollars = 1000
 milli_2190days = milli_1day * 2190 
 within_2190days = time_delta < milli_2190days
 
-spent_2190 = 0
 total_2190 = 0.0
-basis_2190 = 0.0
-quant_2190 = 0.0
-quant_2190 := within_2190days ? (1000/price) : 0.0
-spent_2190 := within_2190days ? (nz(spent_2190[1])+1000) : 0
-total_2190 := (nz(total_2190[1])+quant_2190)
-basis_2190 := (spent_2190/total_2190)
+spent_2190 = 2190*dollars
 
+if rolling_window
+    spent_2190 := within_2190days ? nz(spent_2190[1])+dollars : 0
+    quant_2190 = within_2190days ? dollars/price : 0.0
+    total_2190 := nz(total_2190[1])+quant_2190
+else
+    quant_2190 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 2190
+        total_2190 := total_2190+quant_2190[i]
+
+basis_2190 = spent_2190/total_2190
 
 plot_2190 = plot(basis_2190, linewidth=8, color=#BB8CFF, title="2190 days of DCA")
 
@@ -35,15 +41,19 @@ fill(plot1=plot_2190, plot2=plot_price, color=price > basis_2190 ? color_fill_se
 milli_1825days = milli_1day * 1825 
 within_1825days = time_delta < milli_1825days
 
-spent_1825 = 0
 total_1825 = 0.0
-basis_1825 = 0.0
-quant_1825 = 0.0
-quant_1825 := within_1825days ? (1000/price) : 0.0
-spent_1825 := within_1825days ? (nz(spent_1825[1])+1000) : 0
-total_1825 := (nz(total_1825[1])+quant_1825)
-basis_1825 := (spent_1825/total_1825)
+spent_1825 = 1825*dollars
 
+if rolling_window
+    spent_1825 := within_1825days ? nz(spent_1825[1])+dollars : 0
+    quant_1825 = within_1825days ? dollars/price : 0.0
+    total_1825 := nz(total_1825[1])+quant_1825
+else
+    quant_1825 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 1825
+        total_1825 := total_1825+quant_1825[i]
+
+basis_1825 = spent_1825/total_1825
 
 plot_1825 = plot(basis_1825, linewidth=7, color=#AA7BEE, title="1825 days of DCA")
 
@@ -52,15 +62,19 @@ fill(plot1=plot_1825, plot2=plot_price, color=price > basis_1825 ? color_fill_se
 milli_1460days = milli_1day * 1460 
 within_1460days = time_delta < milli_1460days
 
-spent_1460 = 0
 total_1460 = 0.0
-basis_1460 = 0.0
-quant_1460 = 0.0
-quant_1460 := within_1460days ? (1000/price) : 0.0
-spent_1460 := within_1460days ? (nz(spent_1460[1])+1000) : 0
-total_1460 := (nz(total_1460[1])+quant_1460)
-basis_1460 := (spent_1460/total_1460)
+spent_1460 = 1460*dollars
 
+if rolling_window
+    spent_1460 := within_1460days ? nz(spent_1460[1])+dollars : 0
+    quant_1460 = within_1460days ? dollars/price : 0.0
+    total_1460 := nz(total_1460[1])+quant_1460
+else
+    quant_1460 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 1460
+        total_1460 := total_1460+quant_1460[i]
+
+basis_1460 = spent_1460/total_1460
 
 plot_1460 = plot(basis_1460, linewidth=6, color=#996ADD, title="1460 days of DCA")
 
@@ -69,15 +83,19 @@ fill(plot1=plot_1460, plot2=plot_price, color=price > basis_1460 ? color_fill_se
 milli_1095days = milli_1day * 1095 
 within_1095days = time_delta < milli_1095days
 
-spent_1095 = 0
 total_1095 = 0.0
-basis_1095 = 0.0
-quant_1095 = 0.0
-quant_1095 := within_1095days ? (1000/price) : 0.0
-spent_1095 := within_1095days ? (nz(spent_1095[1])+1000) : 0
-total_1095 := (nz(total_1095[1])+quant_1095)
-basis_1095 := (spent_1095/total_1095)
+spent_1095 = 1095*dollars
 
+if rolling_window
+    spent_1095 := within_1095days ? nz(spent_1095[1])+dollars : 0
+    quant_1095 = within_1095days ? dollars/price : 0.0
+    total_1095 := nz(total_1095[1])+quant_1095
+else
+    quant_1095 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 1095
+        total_1095 := total_1095+quant_1095[i]
+
+basis_1095 = spent_1095/total_1095
 
 plot_1095 = plot(basis_1095, linewidth=5, color=#8859CC, title="1095 days of DCA")
 
@@ -86,15 +104,19 @@ fill(plot1=plot_1095, plot2=plot_price, color=price > basis_1095 ? color_fill_se
 milli_730days = milli_1day * 730 
 within_730days = time_delta < milli_730days
 
-spent_730 = 0
 total_730 = 0.0
-basis_730 = 0.0
-quant_730 = 0.0
-quant_730 := within_730days ? (1000/price) : 0.0
-spent_730 := within_730days ? (nz(spent_730[1])+1000) : 0
-total_730 := (nz(total_730[1])+quant_730)
-basis_730 := (spent_730/total_730)
+spent_730 = 730*dollars
 
+if rolling_window
+    spent_730 := within_730days ? nz(spent_730[1])+dollars : 0
+    quant_730 = within_730days ? dollars/price : 0.0
+    total_730 := nz(total_730[1])+quant_730
+else
+    quant_730 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 730
+        total_730 := total_730+quant_730[i]
+
+basis_730 = spent_730/total_730
 
 plot_730 = plot(basis_730, linewidth=4, color=#7748BB, title="730 days of DCA")
 
@@ -103,15 +125,19 @@ fill(plot1=plot_730, plot2=plot_price, color=price > basis_730 ? color_fill_sell
 milli_365days = milli_1day * 365 
 within_365days = time_delta < milli_365days
 
-spent_365 = 0
 total_365 = 0.0
-basis_365 = 0.0
-quant_365 = 0.0
-quant_365 := within_365days ? (1000/price) : 0.0
-spent_365 := within_365days ? (nz(spent_365[1])+1000) : 0
-total_365 := (nz(total_365[1])+quant_365)
-basis_365 := (spent_365/total_365)
+spent_365 = 365*dollars
 
+if rolling_window
+    spent_365 := within_365days ? nz(spent_365[1])+dollars : 0
+    quant_365 = within_365days ? dollars/price : 0.0
+    total_365 := nz(total_365[1])+quant_365
+else
+    quant_365 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 365
+        total_365 := total_365+quant_365[i]
+
+basis_365 = spent_365/total_365
 
 plot_365 = plot(basis_365, linewidth=3, color=#6637AA, title="365 days of DCA")
 
@@ -120,15 +146,19 @@ fill(plot1=plot_365, plot2=plot_price, color=price > basis_365 ? color_fill_sell
 milli_180days = milli_1day * 180 
 within_180days = time_delta < milli_180days
 
-spent_180 = 0
 total_180 = 0.0
-basis_180 = 0.0
-quant_180 = 0.0
-quant_180 := within_180days ? (1000/price) : 0.0
-spent_180 := within_180days ? (nz(spent_180[1])+1000) : 0
-total_180 := (nz(total_180[1])+quant_180)
-basis_180 := (spent_180/total_180)
+spent_180 = 180*dollars
 
+if rolling_window
+    spent_180 := within_180days ? nz(spent_180[1])+dollars : 0
+    quant_180 = within_180days ? dollars/price : 0.0
+    total_180 := nz(total_180[1])+quant_180
+else
+    quant_180 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 180
+        total_180 := total_180+quant_180[i]
+
+basis_180 = spent_180/total_180
 
 plot_180 = plot(basis_180, linewidth=2, color=#552699, title="180 days of DCA")
 
@@ -137,15 +167,19 @@ fill(plot1=plot_180, plot2=plot_price, color=price > basis_180 ? color_fill_sell
 milli_120days = milli_1day * 120 
 within_120days = time_delta < milli_120days
 
-spent_120 = 0
 total_120 = 0.0
-basis_120 = 0.0
-quant_120 = 0.0
-quant_120 := within_120days ? (1000/price) : 0.0
-spent_120 := within_120days ? (nz(spent_120[1])+1000) : 0
-total_120 := (nz(total_120[1])+quant_120)
-basis_120 := (spent_120/total_120)
+spent_120 = 120*dollars
 
+if rolling_window
+    spent_120 := within_120days ? nz(spent_120[1])+dollars : 0
+    quant_120 = within_120days ? dollars/price : 0.0
+    total_120 := nz(total_120[1])+quant_120
+else
+    quant_120 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 120
+        total_120 := total_120+quant_120[i]
+
+basis_120 = spent_120/total_120
 
 plot_120 = plot(basis_120, linewidth=1, color=#441588, title="120 days of DCA")
 
@@ -154,15 +188,19 @@ fill(plot1=plot_120, plot2=plot_price, color=price > basis_120 ? color_fill_sell
 milli_90days = milli_1day * 90 
 within_90days = time_delta < milli_90days
 
-spent_90 = 0
 total_90 = 0.0
-basis_90 = 0.0
-quant_90 = 0.0
-quant_90 := within_90days ? (1000/price) : 0.0
-spent_90 := within_90days ? (nz(spent_90[1])+1000) : 0
-total_90 := (nz(total_90[1])+quant_90)
-basis_90 := (spent_90/total_90)
+spent_90 = 90*dollars
 
+if rolling_window
+    spent_90 := within_90days ? nz(spent_90[1])+dollars : 0
+    quant_90 = within_90days ? dollars/price : 0.0
+    total_90 := nz(total_90[1])+quant_90
+else
+    quant_90 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 90
+        total_90 := total_90+quant_90[i]
+
+basis_90 = spent_90/total_90
 
 plot_90 = plot(basis_90, linewidth=1, color=#330477, title="90 days of DCA")
 
@@ -171,15 +209,19 @@ fill(plot1=plot_90, plot2=plot_price, color=price > basis_90 ? color_fill_sell :
 milli_60days = milli_1day * 60 
 within_60days = time_delta < milli_60days
 
-spent_60 = 0
 total_60 = 0.0
-basis_60 = 0.0
-quant_60 = 0.0
-quant_60 := within_60days ? (1000/price) : 0.0
-spent_60 := within_60days ? (nz(spent_60[1])+1000) : 0
-total_60 := (nz(total_60[1])+quant_60)
-basis_60 := (spent_60/total_60)
+spent_60 = 60*dollars
 
+if rolling_window
+    spent_60 := within_60days ? nz(spent_60[1])+dollars : 0
+    quant_60 = within_60days ? dollars/price : 0.0
+    total_60 := nz(total_60[1])+quant_60
+else
+    quant_60 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 60
+        total_60 := total_60+quant_60[i]
+
+basis_60 = spent_60/total_60
 
 plot_60 = plot(basis_60, linewidth=1, color=#21F366, title="60 days of DCA")
 
@@ -188,15 +230,19 @@ fill(plot1=plot_60, plot2=plot_price, color=price > basis_60 ? color_fill_sell :
 milli_30days = milli_1day * 30 
 within_30days = time_delta < milli_30days
 
-spent_30 = 0
 total_30 = 0.0
-basis_30 = 0.0
-quant_30 = 0.0
-quant_30 := within_30days ? (1000/price) : 0.0
-spent_30 := within_30days ? (nz(spent_30[1])+1000) : 0
-total_30 := (nz(total_30[1])+quant_30)
-basis_30 := (spent_30/total_30)
+spent_30 = 30*dollars
 
+if rolling_window
+    spent_30 := within_30days ? nz(spent_30[1])+dollars : 0
+    quant_30 = within_30days ? dollars/price : 0.0
+    total_30 := nz(total_30[1])+quant_30
+else
+    quant_30 = dollars/price // how many fractions/units bought this period
+    for i = 1 to 30
+        total_30 := total_30+quant_30[i]
+
+basis_30 = spent_30/total_30
 
 plot_30 = plot(basis_30, linewidth=1, color=#10E255, title="30 days of DCA")
 

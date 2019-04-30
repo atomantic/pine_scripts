@@ -4,7 +4,7 @@ color=0xBB8CFF
 alter=0x111111
 
 echo -n "//@version=3
-study(\"Dollar Cost Average Cost Basis\", overlay=true, scale=scale.none)
+study(\"Dollar Cost Average Cost Basis\", overlay=true)
 // Shows the cost-basis for dollar cost averaging
 // note: this code was generated using Bash because pinescript does not have arrays/collections
 // and you can't run plot within a for loop :(
@@ -13,13 +13,15 @@ study(\"Dollar Cost Average Cost Basis\", overlay=true, scale=scale.none)
 
 price=input(close, title=\"Source\")
 // plot the price for use in color fills
-plot_price = plot(price[1], linewidth=0)
+plot_price = plot(price)
 color_fill_sell = #a20000
 color_fill_buy = #017d13
 color_fill_transp = input(85, title=\"Fill Transparency\")
+rolling_window = input(defval=false, type=bool, title=\"Rolling Window?\")
 
 time_delta = (timenow - time)
-milli_1day = 1000 * 60 * 60 * 24" > dcacb.pine
+milli_1day = 1000 * 60 * 60 * 24
+dollars = 1000" > dcacb.pine
 
 linewidth=8
 for period in 2190 1825 1460 1095 730 365 180 120 90 60 30
@@ -29,15 +31,19 @@ color_string=$(echo "$color" | sed 's/0x/#/')
 milli_${period}days = milli_1day * ${period} 
 within_${period}days = time_delta < milli_${period}days
 
-spent_${period} = 0
 total_${period} = 0.0
-basis_${period} = 0.0
-quant_${period} = 0.0
-quant_${period} := within_${period}days ? (1000/price) : 0.0
-spent_${period} := within_${period}days ? (nz(spent_${period}[1])+1000) : 0
-total_${period} := (nz(total_${period}[1])+quant_${period})
-basis_${period} := (spent_${period}/total_${period})
+spent_${period} = ${period}*dollars
 
+if rolling_window
+    spent_${period} := within_${period}days ? nz(spent_${period}[1])+dollars : 0
+    quant_${period} = within_${period}days ? dollars/price : 0.0
+    total_${period} := nz(total_${period}[1])+quant_${period}
+else
+    quant_${period} = dollars/price // how many fractions/units bought this period
+    for i = 1 to ${period}
+        total_${period} := total_${period}+quant_${period}[i]
+
+basis_${period} = spent_${period}/total_${period}
 
 plot_${period} = plot(basis_${period}, linewidth=${linewidth}, color=${color_string}, title=\"${period} days of DCA\")
 
