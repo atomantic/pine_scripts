@@ -3,7 +3,7 @@
 ## DCACB - Dollar Cost Average Cost Basis
 ![Alt text](img/dcacb_vti.png)
 ![Alt text](img/dcacb_btcusd.png)
-> Shows the cumulative cost-basis for buying a fix $ qauntity of the asset over various plots: `30 days`, `60`, `90`, `120`, `180`, and `1-6 years` 
+> Shows the cumulative cost-basis for buying a fixed $ quantity of the asset over various plots: `30 days`, `60`, `90`, `120`, `180`, and `1-6 years` 
 >    - when the current price is profitable for the DCA plot, fills red
 >    - when it will reduce the cost-basis for a DCA investor to buy more, turns green
 >    - draws heavier support lines for longer term DCA investors
