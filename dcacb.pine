@@ -21,7 +21,7 @@ milli_2190days = milli_1day * 2190
 within_2190days = time_delta < milli_2190days
 
 total_2190 = 0.0
-spent_2190 = 2190*dollars
+spent_2190 = 0
 
 if rolling_window
     spent_2190 := within_2190days ? nz(spent_2190[1])+dollars : 0
@@ -30,7 +30,9 @@ if rolling_window
 else
     quant_2190 = dollars/price // how many fractions/units bought this period
     for i = 1 to 2190
-        total_2190 := total_2190+quant_2190[i]
+        if quant_2190[i]
+            spent_2190 := spent_2190+dollars
+        total_2190 := total_2190+nz(quant_2190[i], 0)
 
 basis_2190 = spent_2190/total_2190
 
@@ -42,7 +44,7 @@ milli_1825days = milli_1day * 1825
 within_1825days = time_delta < milli_1825days
 
 total_1825 = 0.0
-spent_1825 = 1825*dollars
+spent_1825 = 0
 
 if rolling_window
     spent_1825 := within_1825days ? nz(spent_1825[1])+dollars : 0
@@ -51,7 +53,9 @@ if rolling_window
 else
     quant_1825 = dollars/price // how many fractions/units bought this period
     for i = 1 to 1825
-        total_1825 := total_1825+quant_1825[i]
+        if quant_1825[i]
+            spent_1825 := spent_1825+dollars
+        total_1825 := total_1825+nz(quant_1825[i], 0)
 
 basis_1825 = spent_1825/total_1825
 
@@ -63,7 +67,7 @@ milli_1460days = milli_1day * 1460
 within_1460days = time_delta < milli_1460days
 
 total_1460 = 0.0
-spent_1460 = 1460*dollars
+spent_1460 = 0
 
 if rolling_window
     spent_1460 := within_1460days ? nz(spent_1460[1])+dollars : 0
@@ -72,7 +76,9 @@ if rolling_window
 else
     quant_1460 = dollars/price // how many fractions/units bought this period
     for i = 1 to 1460
-        total_1460 := total_1460+quant_1460[i]
+        if quant_1460[i]
+            spent_1460 := spent_1460+dollars
+        total_1460 := total_1460+nz(quant_1460[i], 0)
 
 basis_1460 = spent_1460/total_1460
 
@@ -84,7 +90,7 @@ milli_1095days = milli_1day * 1095
 within_1095days = time_delta < milli_1095days
 
 total_1095 = 0.0
-spent_1095 = 1095*dollars
+spent_1095 = 0
 
 if rolling_window
     spent_1095 := within_1095days ? nz(spent_1095[1])+dollars : 0
@@ -93,7 +99,9 @@ if rolling_window
 else
     quant_1095 = dollars/price // how many fractions/units bought this period
     for i = 1 to 1095
-        total_1095 := total_1095+quant_1095[i]
+        if quant_1095[i]
+            spent_1095 := spent_1095+dollars
+        total_1095 := total_1095+nz(quant_1095[i], 0)
 
 basis_1095 = spent_1095/total_1095
 
@@ -105,7 +113,7 @@ milli_730days = milli_1day * 730
 within_730days = time_delta < milli_730days
 
 total_730 = 0.0
-spent_730 = 730*dollars
+spent_730 = 0
 
 if rolling_window
     spent_730 := within_730days ? nz(spent_730[1])+dollars : 0
@@ -114,7 +122,9 @@ if rolling_window
 else
     quant_730 = dollars/price // how many fractions/units bought this period
     for i = 1 to 730
-        total_730 := total_730+quant_730[i]
+        if quant_730[i]
+            spent_730 := spent_730+dollars
+        total_730 := total_730+nz(quant_730[i], 0)
 
 basis_730 = spent_730/total_730
 
@@ -126,7 +136,7 @@ milli_365days = milli_1day * 365
 within_365days = time_delta < milli_365days
 
 total_365 = 0.0
-spent_365 = 365*dollars
+spent_365 = 0
 
 if rolling_window
     spent_365 := within_365days ? nz(spent_365[1])+dollars : 0
@@ -135,7 +145,9 @@ if rolling_window
 else
     quant_365 = dollars/price // how many fractions/units bought this period
     for i = 1 to 365
-        total_365 := total_365+quant_365[i]
+        if quant_365[i]
+            spent_365 := spent_365+dollars
+        total_365 := total_365+nz(quant_365[i], 0)
 
 basis_365 = spent_365/total_365
 
@@ -147,7 +159,7 @@ milli_180days = milli_1day * 180
 within_180days = time_delta < milli_180days
 
 total_180 = 0.0
-spent_180 = 180*dollars
+spent_180 = 0
 
 if rolling_window
     spent_180 := within_180days ? nz(spent_180[1])+dollars : 0
@@ -156,7 +168,9 @@ if rolling_window
 else
     quant_180 = dollars/price // how many fractions/units bought this period
     for i = 1 to 180
-        total_180 := total_180+quant_180[i]
+        if quant_180[i]
+            spent_180 := spent_180+dollars
+        total_180 := total_180+nz(quant_180[i], 0)
 
 basis_180 = spent_180/total_180
 
@@ -168,7 +182,7 @@ milli_120days = milli_1day * 120
 within_120days = time_delta < milli_120days
 
 total_120 = 0.0
-spent_120 = 120*dollars
+spent_120 = 0
 
 if rolling_window
     spent_120 := within_120days ? nz(spent_120[1])+dollars : 0
@@ -177,7 +191,9 @@ if rolling_window
 else
     quant_120 = dollars/price // how many fractions/units bought this period
     for i = 1 to 120
-        total_120 := total_120+quant_120[i]
+        if quant_120[i]
+            spent_120 := spent_120+dollars
+        total_120 := total_120+nz(quant_120[i], 0)
 
 basis_120 = spent_120/total_120
 
@@ -189,7 +205,7 @@ milli_90days = milli_1day * 90
 within_90days = time_delta < milli_90days
 
 total_90 = 0.0
-spent_90 = 90*dollars
+spent_90 = 0
 
 if rolling_window
     spent_90 := within_90days ? nz(spent_90[1])+dollars : 0
@@ -198,7 +214,9 @@ if rolling_window
 else
     quant_90 = dollars/price // how many fractions/units bought this period
     for i = 1 to 90
-        total_90 := total_90+quant_90[i]
+        if quant_90[i]
+            spent_90 := spent_90+dollars
+        total_90 := total_90+nz(quant_90[i], 0)
 
 basis_90 = spent_90/total_90
 
@@ -210,7 +228,7 @@ milli_60days = milli_1day * 60
 within_60days = time_delta < milli_60days
 
 total_60 = 0.0
-spent_60 = 60*dollars
+spent_60 = 0
 
 if rolling_window
     spent_60 := within_60days ? nz(spent_60[1])+dollars : 0
@@ -219,7 +237,9 @@ if rolling_window
 else
     quant_60 = dollars/price // how many fractions/units bought this period
     for i = 1 to 60
-        total_60 := total_60+quant_60[i]
+        if quant_60[i]
+            spent_60 := spent_60+dollars
+        total_60 := total_60+nz(quant_60[i], 0)
 
 basis_60 = spent_60/total_60
 
@@ -231,7 +251,7 @@ milli_30days = milli_1day * 30
 within_30days = time_delta < milli_30days
 
 total_30 = 0.0
-spent_30 = 30*dollars
+spent_30 = 0
 
 if rolling_window
     spent_30 := within_30days ? nz(spent_30[1])+dollars : 0
@@ -240,7 +260,9 @@ if rolling_window
 else
     quant_30 = dollars/price // how many fractions/units bought this period
     for i = 1 to 30
-        total_30 := total_30+quant_30[i]
+        if quant_30[i]
+            spent_30 := spent_30+dollars
+        total_30 := total_30+nz(quant_30[i], 0)
 
 basis_30 = spent_30/total_30
 

@@ -32,7 +32,7 @@ milli_${period}days = milli_1day * ${period}
 within_${period}days = time_delta < milli_${period}days
 
 total_${period} = 0.0
-spent_${period} = ${period}*dollars
+spent_${period} = 0
 
 if rolling_window
     spent_${period} := within_${period}days ? nz(spent_${period}[1])+dollars : 0
@@ -41,7 +41,9 @@ if rolling_window
 else
     quant_${period} = dollars/price // how many fractions/units bought this period
     for i = 1 to ${period}
-        total_${period} := total_${period}+quant_${period}[i]
+        if quant_${period}[i]
+            spent_${period} := spent_${period}+dollars
+        total_${period} := total_${period}+nz(quant_${period}[i], 0)
 
 basis_${period} = spent_${period}/total_${period}
 
