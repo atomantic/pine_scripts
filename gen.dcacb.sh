@@ -20,7 +20,7 @@ color_fill_transp = input(85, title=\"Fill Transparency\")
 rolling_window = input(defval=false, type=bool, title=\"Rolling Window?\")
 
 time_delta = (timenow - time)
-milli_1day = 1000 * 60 * 60 * 24
+milli_interval = 1000 * 60 * 60 * 24 * interval
 dollars = 1000" > dcacb.pine
 
 linewidth=8
@@ -28,15 +28,15 @@ for period in 2190 1825 1460 1095 730 365 180 120 90 60 30
 do
 color_string=$(echo "$color" | sed 's/0x/#/')
    echo -n "
-milli_${period}days = milli_1day * ${period} 
-within_${period}days = time_delta < milli_${period}days
+milli_${period} = milli_interval * ${period} 
+within_${period} = time_delta < milli_${period}
 
 total_${period} = 0.0
 spent_${period} = 0
 
 if rolling_window
-    spent_${period} := within_${period}days ? nz(spent_${period}[1])+dollars : 0
-    quant_${period} = within_${period}days ? dollars/price : 0.0
+    spent_${period} := within_${period} ? nz(spent_${period}[1])+dollars : 0
+    quant_${period} = within_${period} ? dollars/price : 0.0
     total_${period} := nz(total_${period}[1])+quant_${period}
 else
     quant_${period} = dollars/price // how many fractions/units bought this period
@@ -50,6 +50,13 @@ basis_${period} = spent_${period}/total_${period}
 plot_${period} = plot(basis_${period}, linewidth=${linewidth}, color=${color_string}, title=\"${period} days of DCA\")
 
 fill(plot1=plot_${period}, plot2=plot_price, color=price > basis_${period} ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
+
+//spent_all := nz(spent_all[1])+dollars
+//quant_all = dollars/price
+//total_all := nz(total_all[1])+quant_all
+//basis_all = spent_all/total_all
+//plot_all = plot(basis_all, linewidth=10, color=blue, title=\"DCA: All Time\")
+//fill(plot1=plot_all, plot2=plot_price, color=price > basis_all ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
 " >> dcacb.pine
 
 if (( linewidth > 1 )); then
