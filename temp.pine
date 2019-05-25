@@ -1,0 +1,63 @@
+
+plot(n, color=na, style=line)
+AB(x1,x2,y1,y2) => n < x1 or n > x2 ? na : y1 + (y2 - y1) / (x2 - x1) * (n - x1)
+plot(AB(valuewhen(barstate.islast, close, 0),10136,3819,3893), color=#ff00ff, linewidth=1, style=line, transp=0)
+plot(AB(valuewhen(barstate.islast, close, 0),10136,3966.5,3931), color=#ff00ff, linewidth=1, style=line, transp=0)
+
+current_price = price
+total_1825_future = nz(valuewhen(barstate.islast, close, 0))
+spent_1825_future = nz(valuewhen(barstate.islast, close, 0))
+if(barstate.islast)
+
+
+    // draw the future
+    // assuming the price stays the same
+    // but extended from where all the DCA lines left off
+    quant_1825_future = dollars/price // how many fractions/units bought this period
+    for i = 0 to 1825
+        spent_1825_future := spent_1825_future+dollars
+        total_1825_future := total_1825_future+quant_1825_future
+    
+basis_1825_future = spent_1825_future/total_1825_future
+plot_1825_future = plot(basis_1825_future, linewidth=10, color=#ff00ff, title="1825_future")
+
+
+//spent_all := nz(spent_all[1])+dollars
+//quant_all = dollars/price
+//total_all := nz(total_all[1])+quant_all
+//basis_all = spent_all/total_all
+//plot_all = plot(basis_all, linewidth=10, color=blue, title=\"DCA: All Time\")
+//fill(plot1=plot_all, plot2=plot_price, color=price > basis_all ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
+
+
+///////////////////////////////////////////////////
+
+
+_src = close 
+change = (_src[0] - _src[1])/_src[0] 
+linear_predicted_price_f1 = (change*_src[0]) + _src[0] 
+
+linear_predicted_price_f2 = (change*linear_predicted_price_f1[0] + linear_predicted_price_f1[0]) 
+linear_predicted_price_f3 = (change*linear_predicted_price_f2[0] + linear_predicted_price_f2[0]) 
+linear_predicted_price_f4 = (change*linear_predicted_price_f3[0] + linear_predicted_price_f3[0]) 
+linear_predicted_price_f5 = (change*linear_predicted_price_f4[0] + linear_predicted_price_f4[0]) 
+linear_predicted_price_f6 = (change*linear_predicted_price_f5[0] + linear_predicted_price_f5[0]) 
+linear_predicted_price_f7 = (change*linear_predicted_price_f6[0] + linear_predicted_price_f6[0]) 
+linear_predicted_price_f8 = (change*linear_predicted_price_f7[0] + linear_predicted_price_f7[0]) 
+linear_predicted_price_f9 = (change*linear_predicted_price_f8[0] + linear_predicted_price_f8[0]) 
+linear_predicted_price_f10 = (change*linear_predicted_price_f9[0] + linear_predicted_price_f9[0]) 
+linear_predicted_price_f11 = (change*linear_predicted_price_f10[0] + linear_predicted_price_f10[0]) 
+
+plot(linear_predicted_price_f1, show_last=1, offset=1, linewidth=1, color=red) 
+plot(linear_predicted_price_f2, show_last=1, offset=2, linewidth=1, color=red) 
+plot(linear_predicted_price_f3, show_last=1, offset=3, linewidth=1, color=red) 
+plot(linear_predicted_price_f4, show_last=1, offset=4, linewidth=1, color=red) 
+plot(linear_predicted_price_f5, show_last=1, offset=5, linewidth=1, color=red) 
+plot(linear_predicted_price_f6, show_last=1, offset=6, linewidth=1, color=red) 
+plot(linear_predicted_price_f7, show_last=1, offset=7, linewidth=1, color=red) 
+plot(linear_predicted_price_f8, show_last=1, offset=8, linewidth=1, color=red) 
+plot(linear_predicted_price_f9, show_last=1, offset=9, linewidth=1, color=red) 
+plot(linear_predicted_price_f10, show_last=1, offset=10, linewidth=1, color=red) 
+plot(linear_predicted_price_f11, show_last=1, offset=11, linewidth=1, color=blue) 
+
+plot(_src)
