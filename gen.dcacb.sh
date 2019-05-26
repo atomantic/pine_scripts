@@ -34,12 +34,12 @@ milli_${period} = milli_interval * ${period}
 within_${period} = time_delta < milli_${period}
 total_${period} = 0.0
 spent_${period} = ${period} * dollars
-quant_${period} = dollars/price // how many fractions/units bought this period
 if rolling_window
     spent_${period} := within_${period} ? nz(spent_${period}[1])+dollars : 0
     quant_${period} = within_${period} ? dollars/price : 0.0
     total_${period} := nz(total_${period}[1])+quant_${period}
 else
+    quant_${period} = dollars/price // how many fractions/units bought this period
     for i = 1 to ${period}
         total_${period} := total_${period}+quant_${period}[i]
 basis_${period} = spent_${period}/total_${period}
@@ -49,7 +49,7 @@ fill(plot1=plot_${period}, plot2=plot_price, color=price > basis_${period} ? col
 
     if [[ " ${futures[@]} " =~ " ${period} " ]]; then
         echo -n "
-total_${period}_future_1 = total_${period}[0]-((total_${period}/$period)*2)+quant_${period}[0]
+total_${period}_future_1 = total_${period}[0]-((total_${period}/$period)*2)+nz(quant_${period}[0],0)
 basis_${period}_future_1 = spent_${period}/total_${period}_future_1
 plot(basis_${period}_future_1, show_last=2, offset=1, linewidth=${linewidth}, color=${color_string}) 
         " >> dcacb.pine
@@ -58,7 +58,7 @@ plot(basis_${period}_future_1, show_last=2, offset=1, linewidth=${linewidth}, co
         do
             prev="$(($i-1))"
             echo -n "
-total_${period}_future_${i} = total_${period}_future_${prev}-(2*(total_${period}_future_${prev}[0]/${period}))+quant_${period}[0]
+total_${period}_future_${i} = total_${period}_future_${prev}-(2*(total_${period}_future_${prev}[0]/${period}))+nz(quant_${period}[0],0)
 basis_${period}_future_${i} = spent_${period}/total_${period}_future_${i}
 plot(basis_${period}_future_${i}, show_last=1, offset=${i}, linewidth=${linewidth}, color=${color_string}) 
         " >> dcacb.pine
