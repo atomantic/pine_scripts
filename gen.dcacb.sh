@@ -2,7 +2,7 @@
 
 color=0xBB8CFF
 alter=0x111111
-futures=(365)
+futures=(30 60 90)
 
 echo -n "//@version=3
 study(\"Dollar Cost Average Cost Basis\", overlay=true)
@@ -50,20 +50,27 @@ fill(plot1=plot_${period}, plot2=plot_price, color=price > basis_${period} ? col
 " >> dcacb.pine
 
     if [[ " ${futures[@]} " =~ " ${period} " ]]; then
+        # note: this isn't quite perfect. ideally, we would want to pop the oldest value from total_${period}
+        # and add a new value that is the quantity purchased at the realtime price
+        # this would create a sliding window that gets closer to the current closing price
+        # however, I haven't found a way to do this, so we are simply subtracting the average quantity
+        # then adding a new quantity based on the latest (it's not quite right but it's close if the price is somewhat stable)
         echo -n "
-total_${period}_future_1 = total_${period}[0]-((total_${period}/$period)*2)+nz(quant_${period}[0],0)
-basis_${period}_future_1 = spent_${period}/total_${period}_future_1
-plot(basis_${period}_future_1, show_last=2, offset=1, linewidth=${linewidth}, color=${color_string}) 
+total_${period}_future_0 = total_${period}[0]-(total_${period}/$period)+nz(quant_${period}[0],0)
+basis_${period}_future_0 = spent_${period}/total_${period}_future_0
+plot(basis_${period}_future_0, show_last=1, style=stepline, trackprice=false, offset=1, linewidth=2, color=${color_string}) 
         " >> dcacb.pine
 
-        for i in {2..30}
+        for i in {3..36}
         do
-            prev="$(($i-1))"
+            if [[ $((i % 3)) == 0 ]]; then
+            prev="$(($i-3))"
             echo -n "
-total_${period}_future_${i} = total_${period}_future_${prev}-(2*(total_${period}_future_${prev}[0]/${period}))+nz(quant_${period}[0],0)
+total_${period}_future_${i} = total_${period}_future_${prev}-(total_${period}_future_${prev}[0]/${period})+nz(quant_${period}[0],0)
 basis_${period}_future_${i} = spent_${period}/total_${period}_future_${i}
-plot(basis_${period}_future_${i}, show_last=1, offset=${i}, linewidth=${linewidth}, color=${color_string}) 
+plot(basis_${period}_future_${i}, show_last=1, style=line, trackprice=false, offset=${i}, linewidth=2, color=gray) 
         " >> dcacb.pine
+            fi
         done
     fi
 

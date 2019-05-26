@@ -131,126 +131,6 @@ basis_365 = spent_365/total_365
 plot_365 = plot(basis_365, linewidth=3, color=#6637AA, title="365 days of DCA")
 fill(plot1=plot_365, plot2=plot_price, color=price > basis_365 ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
 
-total_365_future_1 = total_365[0]-((total_365/365)*2)+nz(quant_365[0],0)
-basis_365_future_1 = spent_365/total_365_future_1
-plot(basis_365_future_1, show_last=2, offset=1, linewidth=3, color=#6637AA) 
-        
-total_365_future_2 = total_365_future_1-(2*(total_365_future_1[0]/365))+nz(quant_365[0],0)
-basis_365_future_2 = spent_365/total_365_future_2
-plot(basis_365_future_2, show_last=1, offset=2, linewidth=3, color=#6637AA) 
-        
-total_365_future_3 = total_365_future_2-(2*(total_365_future_2[0]/365))+nz(quant_365[0],0)
-basis_365_future_3 = spent_365/total_365_future_3
-plot(basis_365_future_3, show_last=1, offset=3, linewidth=3, color=#6637AA) 
-        
-total_365_future_4 = total_365_future_3-(2*(total_365_future_3[0]/365))+nz(quant_365[0],0)
-basis_365_future_4 = spent_365/total_365_future_4
-plot(basis_365_future_4, show_last=1, offset=4, linewidth=3, color=#6637AA) 
-        
-total_365_future_5 = total_365_future_4-(2*(total_365_future_4[0]/365))+nz(quant_365[0],0)
-basis_365_future_5 = spent_365/total_365_future_5
-plot(basis_365_future_5, show_last=1, offset=5, linewidth=3, color=#6637AA) 
-        
-total_365_future_6 = total_365_future_5-(2*(total_365_future_5[0]/365))+nz(quant_365[0],0)
-basis_365_future_6 = spent_365/total_365_future_6
-plot(basis_365_future_6, show_last=1, offset=6, linewidth=3, color=#6637AA) 
-        
-total_365_future_7 = total_365_future_6-(2*(total_365_future_6[0]/365))+nz(quant_365[0],0)
-basis_365_future_7 = spent_365/total_365_future_7
-plot(basis_365_future_7, show_last=1, offset=7, linewidth=3, color=#6637AA) 
-        
-total_365_future_8 = total_365_future_7-(2*(total_365_future_7[0]/365))+nz(quant_365[0],0)
-basis_365_future_8 = spent_365/total_365_future_8
-plot(basis_365_future_8, show_last=1, offset=8, linewidth=3, color=#6637AA) 
-        
-total_365_future_9 = total_365_future_8-(2*(total_365_future_8[0]/365))+nz(quant_365[0],0)
-basis_365_future_9 = spent_365/total_365_future_9
-plot(basis_365_future_9, show_last=1, offset=9, linewidth=3, color=#6637AA) 
-        
-total_365_future_10 = total_365_future_9-(2*(total_365_future_9[0]/365))+nz(quant_365[0],0)
-basis_365_future_10 = spent_365/total_365_future_10
-plot(basis_365_future_10, show_last=1, offset=10, linewidth=3, color=#6637AA) 
-        
-total_365_future_11 = total_365_future_10-(2*(total_365_future_10[0]/365))+nz(quant_365[0],0)
-basis_365_future_11 = spent_365/total_365_future_11
-plot(basis_365_future_11, show_last=1, offset=11, linewidth=3, color=#6637AA) 
-        
-total_365_future_12 = total_365_future_11-(2*(total_365_future_11[0]/365))+nz(quant_365[0],0)
-basis_365_future_12 = spent_365/total_365_future_12
-plot(basis_365_future_12, show_last=1, offset=12, linewidth=3, color=#6637AA) 
-        
-total_365_future_13 = total_365_future_12-(2*(total_365_future_12[0]/365))+nz(quant_365[0],0)
-basis_365_future_13 = spent_365/total_365_future_13
-plot(basis_365_future_13, show_last=1, offset=13, linewidth=3, color=#6637AA) 
-        
-total_365_future_14 = total_365_future_13-(2*(total_365_future_13[0]/365))+nz(quant_365[0],0)
-basis_365_future_14 = spent_365/total_365_future_14
-plot(basis_365_future_14, show_last=1, offset=14, linewidth=3, color=#6637AA) 
-        
-total_365_future_15 = total_365_future_14-(2*(total_365_future_14[0]/365))+nz(quant_365[0],0)
-basis_365_future_15 = spent_365/total_365_future_15
-plot(basis_365_future_15, show_last=1, offset=15, linewidth=3, color=#6637AA) 
-        
-total_365_future_16 = total_365_future_15-(2*(total_365_future_15[0]/365))+nz(quant_365[0],0)
-basis_365_future_16 = spent_365/total_365_future_16
-plot(basis_365_future_16, show_last=1, offset=16, linewidth=3, color=#6637AA) 
-        
-total_365_future_17 = total_365_future_16-(2*(total_365_future_16[0]/365))+nz(quant_365[0],0)
-basis_365_future_17 = spent_365/total_365_future_17
-plot(basis_365_future_17, show_last=1, offset=17, linewidth=3, color=#6637AA) 
-        
-total_365_future_18 = total_365_future_17-(2*(total_365_future_17[0]/365))+nz(quant_365[0],0)
-basis_365_future_18 = spent_365/total_365_future_18
-plot(basis_365_future_18, show_last=1, offset=18, linewidth=3, color=#6637AA) 
-        
-total_365_future_19 = total_365_future_18-(2*(total_365_future_18[0]/365))+nz(quant_365[0],0)
-basis_365_future_19 = spent_365/total_365_future_19
-plot(basis_365_future_19, show_last=1, offset=19, linewidth=3, color=#6637AA) 
-        
-total_365_future_20 = total_365_future_19-(2*(total_365_future_19[0]/365))+nz(quant_365[0],0)
-basis_365_future_20 = spent_365/total_365_future_20
-plot(basis_365_future_20, show_last=1, offset=20, linewidth=3, color=#6637AA) 
-        
-total_365_future_21 = total_365_future_20-(2*(total_365_future_20[0]/365))+nz(quant_365[0],0)
-basis_365_future_21 = spent_365/total_365_future_21
-plot(basis_365_future_21, show_last=1, offset=21, linewidth=3, color=#6637AA) 
-        
-total_365_future_22 = total_365_future_21-(2*(total_365_future_21[0]/365))+nz(quant_365[0],0)
-basis_365_future_22 = spent_365/total_365_future_22
-plot(basis_365_future_22, show_last=1, offset=22, linewidth=3, color=#6637AA) 
-        
-total_365_future_23 = total_365_future_22-(2*(total_365_future_22[0]/365))+nz(quant_365[0],0)
-basis_365_future_23 = spent_365/total_365_future_23
-plot(basis_365_future_23, show_last=1, offset=23, linewidth=3, color=#6637AA) 
-        
-total_365_future_24 = total_365_future_23-(2*(total_365_future_23[0]/365))+nz(quant_365[0],0)
-basis_365_future_24 = spent_365/total_365_future_24
-plot(basis_365_future_24, show_last=1, offset=24, linewidth=3, color=#6637AA) 
-        
-total_365_future_25 = total_365_future_24-(2*(total_365_future_24[0]/365))+nz(quant_365[0],0)
-basis_365_future_25 = spent_365/total_365_future_25
-plot(basis_365_future_25, show_last=1, offset=25, linewidth=3, color=#6637AA) 
-        
-total_365_future_26 = total_365_future_25-(2*(total_365_future_25[0]/365))+nz(quant_365[0],0)
-basis_365_future_26 = spent_365/total_365_future_26
-plot(basis_365_future_26, show_last=1, offset=26, linewidth=3, color=#6637AA) 
-        
-total_365_future_27 = total_365_future_26-(2*(total_365_future_26[0]/365))+nz(quant_365[0],0)
-basis_365_future_27 = spent_365/total_365_future_27
-plot(basis_365_future_27, show_last=1, offset=27, linewidth=3, color=#6637AA) 
-        
-total_365_future_28 = total_365_future_27-(2*(total_365_future_27[0]/365))+nz(quant_365[0],0)
-basis_365_future_28 = spent_365/total_365_future_28
-plot(basis_365_future_28, show_last=1, offset=28, linewidth=3, color=#6637AA) 
-        
-total_365_future_29 = total_365_future_28-(2*(total_365_future_28[0]/365))+nz(quant_365[0],0)
-basis_365_future_29 = spent_365/total_365_future_29
-plot(basis_365_future_29, show_last=1, offset=29, linewidth=3, color=#6637AA) 
-        
-total_365_future_30 = total_365_future_29-(2*(total_365_future_29[0]/365))+nz(quant_365[0],0)
-basis_365_future_30 = spent_365/total_365_future_30
-plot(basis_365_future_30, show_last=1, offset=30, linewidth=3, color=#6637AA) 
-        
 
 milli_180 = milli_interval * 180 
 within_180 = time_delta < milli_180
@@ -308,6 +188,58 @@ basis_90 = spent_90/total_90
 plot_90 = plot(basis_90, linewidth=1, color=#330477, title="90 days of DCA")
 fill(plot1=plot_90, plot2=plot_price, color=price > basis_90 ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
 
+total_90_future_0 = total_90[0]-(total_90/90)+nz(quant_90[0],0)
+basis_90_future_0 = spent_90/total_90_future_0
+plot(basis_90_future_0, show_last=1, style=stepline, trackprice=false, offset=1, linewidth=2, color=#330477) 
+        
+total_90_future_3 = total_90_future_0-(total_90_future_0[0]/90)+nz(quant_90[0],0)
+basis_90_future_3 = spent_90/total_90_future_3
+plot(basis_90_future_3, show_last=1, style=line, trackprice=false, offset=3, linewidth=2, color=gray) 
+        
+total_90_future_6 = total_90_future_3-(total_90_future_3[0]/90)+nz(quant_90[0],0)
+basis_90_future_6 = spent_90/total_90_future_6
+plot(basis_90_future_6, show_last=1, style=line, trackprice=false, offset=6, linewidth=2, color=gray) 
+        
+total_90_future_9 = total_90_future_6-(total_90_future_6[0]/90)+nz(quant_90[0],0)
+basis_90_future_9 = spent_90/total_90_future_9
+plot(basis_90_future_9, show_last=1, style=line, trackprice=false, offset=9, linewidth=2, color=gray) 
+        
+total_90_future_12 = total_90_future_9-(total_90_future_9[0]/90)+nz(quant_90[0],0)
+basis_90_future_12 = spent_90/total_90_future_12
+plot(basis_90_future_12, show_last=1, style=line, trackprice=false, offset=12, linewidth=2, color=gray) 
+        
+total_90_future_15 = total_90_future_12-(total_90_future_12[0]/90)+nz(quant_90[0],0)
+basis_90_future_15 = spent_90/total_90_future_15
+plot(basis_90_future_15, show_last=1, style=line, trackprice=false, offset=15, linewidth=2, color=gray) 
+        
+total_90_future_18 = total_90_future_15-(total_90_future_15[0]/90)+nz(quant_90[0],0)
+basis_90_future_18 = spent_90/total_90_future_18
+plot(basis_90_future_18, show_last=1, style=line, trackprice=false, offset=18, linewidth=2, color=gray) 
+        
+total_90_future_21 = total_90_future_18-(total_90_future_18[0]/90)+nz(quant_90[0],0)
+basis_90_future_21 = spent_90/total_90_future_21
+plot(basis_90_future_21, show_last=1, style=line, trackprice=false, offset=21, linewidth=2, color=gray) 
+        
+total_90_future_24 = total_90_future_21-(total_90_future_21[0]/90)+nz(quant_90[0],0)
+basis_90_future_24 = spent_90/total_90_future_24
+plot(basis_90_future_24, show_last=1, style=line, trackprice=false, offset=24, linewidth=2, color=gray) 
+        
+total_90_future_27 = total_90_future_24-(total_90_future_24[0]/90)+nz(quant_90[0],0)
+basis_90_future_27 = spent_90/total_90_future_27
+plot(basis_90_future_27, show_last=1, style=line, trackprice=false, offset=27, linewidth=2, color=gray) 
+        
+total_90_future_30 = total_90_future_27-(total_90_future_27[0]/90)+nz(quant_90[0],0)
+basis_90_future_30 = spent_90/total_90_future_30
+plot(basis_90_future_30, show_last=1, style=line, trackprice=false, offset=30, linewidth=2, color=gray) 
+        
+total_90_future_33 = total_90_future_30-(total_90_future_30[0]/90)+nz(quant_90[0],0)
+basis_90_future_33 = spent_90/total_90_future_33
+plot(basis_90_future_33, show_last=1, style=line, trackprice=false, offset=33, linewidth=2, color=gray) 
+        
+total_90_future_36 = total_90_future_33-(total_90_future_33[0]/90)+nz(quant_90[0],0)
+basis_90_future_36 = spent_90/total_90_future_36
+plot(basis_90_future_36, show_last=1, style=line, trackprice=false, offset=36, linewidth=2, color=gray) 
+        
 
 milli_60 = milli_interval * 60 
 within_60 = time_delta < milli_60
@@ -327,6 +259,58 @@ basis_60 = spent_60/total_60
 plot_60 = plot(basis_60, linewidth=1, color=#21F366, title="60 days of DCA")
 fill(plot1=plot_60, plot2=plot_price, color=price > basis_60 ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
 
+total_60_future_0 = total_60[0]-(total_60/60)+nz(quant_60[0],0)
+basis_60_future_0 = spent_60/total_60_future_0
+plot(basis_60_future_0, show_last=1, style=stepline, trackprice=false, offset=1, linewidth=2, color=#21F366) 
+        
+total_60_future_3 = total_60_future_0-(total_60_future_0[0]/60)+nz(quant_60[0],0)
+basis_60_future_3 = spent_60/total_60_future_3
+plot(basis_60_future_3, show_last=1, style=line, trackprice=false, offset=3, linewidth=2, color=gray) 
+        
+total_60_future_6 = total_60_future_3-(total_60_future_3[0]/60)+nz(quant_60[0],0)
+basis_60_future_6 = spent_60/total_60_future_6
+plot(basis_60_future_6, show_last=1, style=line, trackprice=false, offset=6, linewidth=2, color=gray) 
+        
+total_60_future_9 = total_60_future_6-(total_60_future_6[0]/60)+nz(quant_60[0],0)
+basis_60_future_9 = spent_60/total_60_future_9
+plot(basis_60_future_9, show_last=1, style=line, trackprice=false, offset=9, linewidth=2, color=gray) 
+        
+total_60_future_12 = total_60_future_9-(total_60_future_9[0]/60)+nz(quant_60[0],0)
+basis_60_future_12 = spent_60/total_60_future_12
+plot(basis_60_future_12, show_last=1, style=line, trackprice=false, offset=12, linewidth=2, color=gray) 
+        
+total_60_future_15 = total_60_future_12-(total_60_future_12[0]/60)+nz(quant_60[0],0)
+basis_60_future_15 = spent_60/total_60_future_15
+plot(basis_60_future_15, show_last=1, style=line, trackprice=false, offset=15, linewidth=2, color=gray) 
+        
+total_60_future_18 = total_60_future_15-(total_60_future_15[0]/60)+nz(quant_60[0],0)
+basis_60_future_18 = spent_60/total_60_future_18
+plot(basis_60_future_18, show_last=1, style=line, trackprice=false, offset=18, linewidth=2, color=gray) 
+        
+total_60_future_21 = total_60_future_18-(total_60_future_18[0]/60)+nz(quant_60[0],0)
+basis_60_future_21 = spent_60/total_60_future_21
+plot(basis_60_future_21, show_last=1, style=line, trackprice=false, offset=21, linewidth=2, color=gray) 
+        
+total_60_future_24 = total_60_future_21-(total_60_future_21[0]/60)+nz(quant_60[0],0)
+basis_60_future_24 = spent_60/total_60_future_24
+plot(basis_60_future_24, show_last=1, style=line, trackprice=false, offset=24, linewidth=2, color=gray) 
+        
+total_60_future_27 = total_60_future_24-(total_60_future_24[0]/60)+nz(quant_60[0],0)
+basis_60_future_27 = spent_60/total_60_future_27
+plot(basis_60_future_27, show_last=1, style=line, trackprice=false, offset=27, linewidth=2, color=gray) 
+        
+total_60_future_30 = total_60_future_27-(total_60_future_27[0]/60)+nz(quant_60[0],0)
+basis_60_future_30 = spent_60/total_60_future_30
+plot(basis_60_future_30, show_last=1, style=line, trackprice=false, offset=30, linewidth=2, color=gray) 
+        
+total_60_future_33 = total_60_future_30-(total_60_future_30[0]/60)+nz(quant_60[0],0)
+basis_60_future_33 = spent_60/total_60_future_33
+plot(basis_60_future_33, show_last=1, style=line, trackprice=false, offset=33, linewidth=2, color=gray) 
+        
+total_60_future_36 = total_60_future_33-(total_60_future_33[0]/60)+nz(quant_60[0],0)
+basis_60_future_36 = spent_60/total_60_future_36
+plot(basis_60_future_36, show_last=1, style=line, trackprice=false, offset=36, linewidth=2, color=gray) 
+        
 
 milli_30 = milli_interval * 30 
 within_30 = time_delta < milli_30
@@ -345,3 +329,56 @@ else
 basis_30 = spent_30/total_30
 plot_30 = plot(basis_30, linewidth=1, color=#10E255, title="30 days of DCA")
 fill(plot1=plot_30, plot2=plot_price, color=price > basis_30 ? color_fill_sell : color_fill_buy, transp=color_fill_transp)
+
+total_30_future_0 = total_30[0]-(total_30/30)+nz(quant_30[0],0)
+basis_30_future_0 = spent_30/total_30_future_0
+plot(basis_30_future_0, show_last=1, style=stepline, trackprice=false, offset=1, linewidth=2, color=#10E255) 
+        
+total_30_future_3 = total_30_future_0-(total_30_future_0[0]/30)+nz(quant_30[0],0)
+basis_30_future_3 = spent_30/total_30_future_3
+plot(basis_30_future_3, show_last=1, style=line, trackprice=false, offset=3, linewidth=2, color=gray) 
+        
+total_30_future_6 = total_30_future_3-(total_30_future_3[0]/30)+nz(quant_30[0],0)
+basis_30_future_6 = spent_30/total_30_future_6
+plot(basis_30_future_6, show_last=1, style=line, trackprice=false, offset=6, linewidth=2, color=gray) 
+        
+total_30_future_9 = total_30_future_6-(total_30_future_6[0]/30)+nz(quant_30[0],0)
+basis_30_future_9 = spent_30/total_30_future_9
+plot(basis_30_future_9, show_last=1, style=line, trackprice=false, offset=9, linewidth=2, color=gray) 
+        
+total_30_future_12 = total_30_future_9-(total_30_future_9[0]/30)+nz(quant_30[0],0)
+basis_30_future_12 = spent_30/total_30_future_12
+plot(basis_30_future_12, show_last=1, style=line, trackprice=false, offset=12, linewidth=2, color=gray) 
+        
+total_30_future_15 = total_30_future_12-(total_30_future_12[0]/30)+nz(quant_30[0],0)
+basis_30_future_15 = spent_30/total_30_future_15
+plot(basis_30_future_15, show_last=1, style=line, trackprice=false, offset=15, linewidth=2, color=gray) 
+        
+total_30_future_18 = total_30_future_15-(total_30_future_15[0]/30)+nz(quant_30[0],0)
+basis_30_future_18 = spent_30/total_30_future_18
+plot(basis_30_future_18, show_last=1, style=line, trackprice=false, offset=18, linewidth=2, color=gray) 
+        
+total_30_future_21 = total_30_future_18-(total_30_future_18[0]/30)+nz(quant_30[0],0)
+basis_30_future_21 = spent_30/total_30_future_21
+plot(basis_30_future_21, show_last=1, style=line, trackprice=false, offset=21, linewidth=2, color=gray) 
+        
+total_30_future_24 = total_30_future_21-(total_30_future_21[0]/30)+nz(quant_30[0],0)
+basis_30_future_24 = spent_30/total_30_future_24
+plot(basis_30_future_24, show_last=1, style=line, trackprice=false, offset=24, linewidth=2, color=gray) 
+        
+total_30_future_27 = total_30_future_24-(total_30_future_24[0]/30)+nz(quant_30[0],0)
+basis_30_future_27 = spent_30/total_30_future_27
+plot(basis_30_future_27, show_last=1, style=line, trackprice=false, offset=27, linewidth=2, color=gray) 
+        
+total_30_future_30 = total_30_future_27-(total_30_future_27[0]/30)+nz(quant_30[0],0)
+basis_30_future_30 = spent_30/total_30_future_30
+plot(basis_30_future_30, show_last=1, style=line, trackprice=false, offset=30, linewidth=2, color=gray) 
+        
+total_30_future_33 = total_30_future_30-(total_30_future_30[0]/30)+nz(quant_30[0],0)
+basis_30_future_33 = spent_30/total_30_future_33
+plot(basis_30_future_33, show_last=1, style=line, trackprice=false, offset=33, linewidth=2, color=gray) 
+        
+total_30_future_36 = total_30_future_33-(total_30_future_33[0]/30)+nz(quant_30[0],0)
+basis_30_future_36 = spent_30/total_30_future_36
+plot(basis_30_future_36, show_last=1, style=line, trackprice=false, offset=36, linewidth=2, color=gray) 
+        
